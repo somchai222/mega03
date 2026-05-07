@@ -40,17 +40,22 @@ header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-header .logo img { 
-    height: 70px; /* คงความสูงเดิมไว้เพื่อให้ Navbar ขนาดเท่าเดิม */
-    width: auto; 
-    display: block; 
-    transform: scale(1.4); /* ปรับตัวเลขตรงนี้ (เช่น 1.2, 1.5) เพื่อเพิ่ม/ลดขนาดตามต้องการ */
-    transform-origin: left center; /* บังคับให้ขยายโดยยึดขอบซ้ายและกึ่งกลางเป็นหลัก เพื่อไม่ให้ล้นตกขอบ */
-}
-
 header .logo {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    height: 72px;
+    max-width: 190px;
+    overflow: hidden;
+}
+
+header .logo img {
+    max-height: 64px;
+    max-width: 190px;
+    width: auto;
+    height: auto;
+    display: block;
+    object-fit: contain;
 }
 
 .nav-menu {
@@ -559,6 +564,7 @@ footer {
 .header-left {
     display: flex;
     align-items: center; /* 👈 เพิ่มบรรทัดนี้เพื่อบังคับให้เนื้อหาตรงกลาง */
+    gap: 16px;
     font-size: 24px;
     font-weight: bold;
     letter-spacing: 1px;

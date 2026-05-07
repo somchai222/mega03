@@ -82,7 +82,7 @@
             <li class="dropdown">
                 <a href="#">Products ▾</a>
                 <ul class="dropdown-content">
-                    <li><a href="product1.html">1.หมวดสื่อสิ่งพิมพ์</a></li>
+                    <li><a href="product1.html">1. หมวดสื่อสิ่งพิมพ์</a></li>
                     <li><a href="product2.html">2. ป้ายไวนิล / อิงค์เจ็ท / บิลบอร์ด</a></li>
                     <li><a href="product3.html">3. ป้ายเซฟตี้ / อะคริลิค / พลาสวูด</a></li>
                     <li><a href="product4.html">4. งานสแตนเลส / ป้ายเนมเพลท</a></li>
@@ -110,11 +110,74 @@
                     ตั้งแต่ต้นจนจบงาน</p>
             </div>
             <div class="about-image">
-                <iframe
-                    src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1054281086541180%2F&show_text=false&width=267&autoplay=1&mute=1&loop=1&playlist=1054281086541180"
-                    width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-                    allowfullscreen="true"
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <div class="about-slider" aria-label="About gallery">
+                    <div class="about-slides">
+                        <div class="about-slide is-active">
+                            <img src="images-megagensis/about/1.jpg" alt="About slide 1">
+                        </div>
+                        <div class="about-slide">
+                            <img src="images-megagensis/about/2.jpg" alt="About slide 2">
+                        </div>
+                        <div class="about-slide">
+                            <img src="images-megagensis/about/3.jpg" alt="About slide 3">
+                        </div>
+                        <div class="about-slide">
+                            <img src="images-megagensis/about/4.jpg" alt="About slide 4">
+                        </div>
+                        <div class="about-slide">
+                            <img src="images-megagensis/about/5.jpg" alt="About slide 5">
+                        </div>
+                        <div class="about-slide">
+                            <img src="images-megagensis/about/6.jpg" alt="About slide 6">
+                        </div>
+                        <div class="about-slide">
+                            <img src="images-megagensis/about/7.jpg" alt="About slide 7">
+                        </div>
+                        <div class="about-slide">
+                            <img src="images-megagensis/about/8.jpg" alt="About slide 8">
+                        </div>
+                        <div class="about-slide">
+                            <img src="images-megagensis/about/9.jpg" alt="About slide 9">
+                        </div>
+                        <div class="about-slide">
+                            <img src="images-megagensis/about/10.jpg" alt="About slide 10">
+                        </div>
+                        <div class="about-slide">
+                            <img src="images-megagensis/about/11.jpg" alt="About slide 11">
+                        </div>
+                        <div class="about-slide">
+                            <img src="images-megagensis/about/12.jpg" alt="About slide 12">
+                        </div>
+                        <div class="about-slide">
+                            <img src="images-megagensis/about/13.jpg" alt="About slide 13">
+                        </div>
+                        <div class="about-slide">
+                            <img src="images-megagensis/about/14.jpg" alt="About slide 14">
+                        </div>
+                    </div>
+                    <button class="about-slider-btn prev" type="button" aria-label="Previous slide">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="about-slider-btn next" type="button" aria-label="Next slide">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <div class="about-slider-dots" aria-label="Slide navigation">
+                        <button class="about-dot is-active" type="button" aria-label="Go to slide 1"></button>
+                        <button class="about-dot" type="button" aria-label="Go to slide 2"></button>
+                        <button class="about-dot" type="button" aria-label="Go to slide 3"></button>
+                        <button class="about-dot" type="button" aria-label="Go to slide 4"></button>
+                        <button class="about-dot" type="button" aria-label="Go to slide 5"></button>
+                        <button class="about-dot" type="button" aria-label="Go to slide 6"></button>
+                        <button class="about-dot" type="button" aria-label="Go to slide 7"></button>
+                        <button class="about-dot" type="button" aria-label="Go to slide 8"></button>
+                        <button class="about-dot" type="button" aria-label="Go to slide 9"></button>
+                        <button class="about-dot" type="button" aria-label="Go to slide 10"></button>
+                        <button class="about-dot" type="button" aria-label="Go to slide 11"></button>
+                        <button class="about-dot" type="button" aria-label="Go to slide 12"></button>
+                        <button class="about-dot" type="button" aria-label="Go to slide 13"></button>
+                        <button class="about-dot" type="button" aria-label="Go to slide 14"></button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -205,6 +268,79 @@
 
     <script>
         (function () {
+            const slider = document.querySelector('.about-slider');
+            if (!slider) return;
+
+            const slides = Array.from(slider.querySelectorAll('.about-slide'));
+            const dots = Array.from(slider.querySelectorAll('.about-dot'));
+            const prevBtn = slider.querySelector('.about-slider-btn.prev');
+            const nextBtn = slider.querySelector('.about-slider-btn.next');
+            let currentIndex = 0;
+            let autoPlayId = null;
+
+            function renderSlide(index) {
+                slides.forEach((slide, slideIndex) => {
+                    slide.classList.toggle('is-active', slideIndex === index);
+                });
+
+                dots.forEach((dot, dotIndex) => {
+                    dot.classList.toggle('is-active', dotIndex === index);
+                });
+
+                currentIndex = index;
+            }
+
+            function showNextSlide() {
+                renderSlide((currentIndex + 1) % slides.length);
+            }
+
+            function showPrevSlide() {
+                renderSlide((currentIndex - 1 + slides.length) % slides.length);
+            }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoPlayId = window.setInterval(showNextSlide, 3500);
+            }
+
+            function stopAutoPlay() {
+                if (autoPlayId) {
+                    window.clearInterval(autoPlayId);
+                    autoPlayId = null;
+                }
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function () {
+                    showPrevSlide();
+                    startAutoPlay();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function () {
+                    showNextSlide();
+                    startAutoPlay();
+                });
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function () {
+                    renderSlide(index);
+                    startAutoPlay();
+                });
+            });
+
+            slider.addEventListener('mouseenter', stopAutoPlay);
+            slider.addEventListener('mouseleave', startAutoPlay);
+
+            renderSlide(0);
+            startAutoPlay();
+        })();
+    </script>
+
+    <script>
+        (function () {
             const finishSkeletonLoading = function () {
                 document.body.classList.remove('is-loading');
                 document.body.classList.add('page-ready');
@@ -221,4 +357,4 @@
     </script>
 </body>
 
-</html>
+</html> 
