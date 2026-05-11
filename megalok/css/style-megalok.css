@@ -853,3 +853,24 @@ body.skeleton-contact .sk-split {
         aspect-ratio: 16 / 7;
     }
 }
+
+/* CSS สำหรับปุ่ม PDF แยกแต่ละโปรดัก */
+        .pdf-btn-direct {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: #dc3545; /* สีแดงแบบไฟล์ PDF */
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .pdf-btn-direct:hover {
+            background-color: #c82333;
+            color: #ffffff;
+        }
+        .pdf-btn-direct i {
+            margin-right: 5px;
+        }
